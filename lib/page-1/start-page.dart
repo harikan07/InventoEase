@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:myapp/utils.dart';
+import 'package:myapp/page-1/get-started-2.dart';
 
 class StartPage extends StatefulWidget {
   const StartPage({Key? key}) : super(key: key);
@@ -13,14 +14,20 @@ class _StartPage extends State<StartPage> {
     double baseWidth = 390;
     double fem = MediaQuery.of(context).size.width / baseWidth;
     double ffem = fem * 0.97;
+
     return SingleChildScrollView(
       child: Material(
         child: Form(
           child: SizedBox(
             width: double.infinity,
             child: TextButton(
-              // startpage5xG (7:959)
-              onPressed: () {},
+              onPressed: () {
+                // Navigate to GetStarted2 when the "InventoEase" text is clicked
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => GetStarted2()),
+                );
+              },
               style: TextButton.styleFrom(
                 padding: EdgeInsets.zero,
               ),
@@ -33,7 +40,6 @@ class _StartPage extends State<StartPage> {
                 child: Stack(
                   children: [
                     Positioned(
-                      // inventoeasez3e (7:960)
                       left: 78 * fem,
                       top: 381 * fem,
                       child: Align(
@@ -55,7 +61,6 @@ class _StartPage extends State<StartPage> {
                       ),
                     ),
                     Positioned(
-                      // inventorymadeeasyRek (7:961)
                       left: 165.5 * fem,
                       top: 426 * fem,
                       child: Align(

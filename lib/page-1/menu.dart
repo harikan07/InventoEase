@@ -4,6 +4,14 @@ import 'package:flutter/material.dart';
 // import 'package:google_fonts/google_fonts.dart';
 import 'package:myapp/utils.dart';
 
+import 'package:myapp/page-1/dashboard.dart';
+import 'package:myapp/page-1/folders.dart';
+import 'package:myapp/page-1/members.dart';
+import 'package:myapp/page-1/notifications.dart';
+import 'package:myapp/page-1/menu.dart';
+import 'package:myapp/page-1/sign-in.dart';
+import 'package:myapp/page-1/edit-profile.dart';
+
 class Menu extends StatefulWidget {
   const Menu({Key? key}) : super(key: key);
   @override
@@ -207,6 +215,12 @@ class _Menu extends State<Menu> {
                             9 * fem, 0 * fem, 11 * fem, 10 * fem),
                         child: ElevatedButton(
                           onPressed: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => EditProfile(),
+                              ),
+                            );
                             // Add functionality for Edit Profile button
                           },
                           style: ElevatedButton.styleFrom(
@@ -263,6 +277,12 @@ class _Menu extends State<Menu> {
                             9 * fem, 0 * fem, 11 * fem, 10 * fem),
                         child: ElevatedButton(
                           onPressed: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => Members(),
+                              ),
+                            );
                             // Add functionality for Members button
                           },
                           style: ElevatedButton.styleFrom(
@@ -371,6 +391,12 @@ class _Menu extends State<Menu> {
                             10 * fem, 0 * fem, 10 * fem, 231 * fem),
                         child: ElevatedButton(
                           onPressed: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => SignIn(),
+                              ),
+                            );
                             // Add functionality for Sign Out button
                           },
                           style: ElevatedButton.styleFrom(
@@ -535,6 +561,12 @@ class _Menu extends State<Menu> {
                           children: [
                             ElevatedButton(
                               onPressed: () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => Dashboard(),
+                                  ),
+                                );
                                 // Add functionality for Home button
                               },
                               style: ElevatedButton.styleFrom(
@@ -557,6 +589,12 @@ class _Menu extends State<Menu> {
                             ),
                             ElevatedButton(
                               onPressed: () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => Folders(),
+                                  ),
+                                );
                                 // Add functionality for Box button
                               },
                               style: ElevatedButton.styleFrom(
@@ -579,6 +617,12 @@ class _Menu extends State<Menu> {
                             ),
                             ElevatedButton(
                               onPressed: () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => Members(),
+                                  ),
+                                );
                                 // Add functionality for Addsquare button
                               },
                               style: ElevatedButton.styleFrom(
@@ -601,6 +645,12 @@ class _Menu extends State<Menu> {
                             ),
                             ElevatedButton(
                               onPressed: () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => Notific(),
+                                  ),
+                                );
                                 // Add functionality for Bell button
                               },
                               style: ElevatedButton.styleFrom(
@@ -623,6 +673,12 @@ class _Menu extends State<Menu> {
                             ),
                             ElevatedButton(
                               onPressed: () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => Menu(),
+                                  ),
+                                );
                                 // Add functionality for Filter button
                               },
                               style: ElevatedButton.styleFrom(

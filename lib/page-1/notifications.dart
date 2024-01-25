@@ -3,6 +3,11 @@ import 'package:flutter/material.dart';
 // import 'dart:ui';
 // import 'package:google_fonts/google_fonts.dart';
 import 'package:myapp/utils.dart';
+import 'package:myapp/page-1/dashboard.dart';
+import 'package:myapp/page-1/folders.dart';
+import 'package:myapp/page-1/members.dart';
+import 'package:myapp/page-1/notifications.dart';
+import 'package:myapp/page-1/menu.dart';
 
 class Notific extends StatefulWidget {
   const Notific({Key? key}) : super(key: key);
@@ -1170,6 +1175,12 @@ class _Notific extends State<Notific> {
                       children: [
                         ElevatedButton(
                           onPressed: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => Dashboard(),
+                              ),
+                            );
                             // Add functionality for Home button
                           },
                           style: ElevatedButton.styleFrom(
@@ -1192,6 +1203,12 @@ class _Notific extends State<Notific> {
                         ),
                         ElevatedButton(
                           onPressed: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => Folders(),
+                              ),
+                            );
                             // Add functionality for Box button
                           },
                           style: ElevatedButton.styleFrom(
@@ -1214,6 +1231,12 @@ class _Notific extends State<Notific> {
                         ),
                         ElevatedButton(
                           onPressed: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => Members(),
+                              ),
+                            );
                             // Add functionality for Addsquare button
                           },
                           style: ElevatedButton.styleFrom(
@@ -1236,6 +1259,12 @@ class _Notific extends State<Notific> {
                         ),
                         ElevatedButton(
                           onPressed: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => Notific(),
+                              ),
+                            );
                             // Add functionality for Bell button
                           },
                           style: ElevatedButton.styleFrom(
@@ -1258,6 +1287,12 @@ class _Notific extends State<Notific> {
                         ),
                         ElevatedButton(
                           onPressed: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => Menu(),
+                              ),
+                            );
                             // Add functionality for Filter button
                           },
                           style: ElevatedButton.styleFrom(

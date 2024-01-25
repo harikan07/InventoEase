@@ -4,6 +4,13 @@ import 'package:flutter/material.dart';
 // import 'package:google_fonts/google_fonts.dart';
 import 'package:myapp/utils.dart';
 
+import 'package:myapp/page-1/dashboard.dart';
+import 'package:myapp/page-1/folders.dart';
+import 'package:myapp/page-1/members.dart';
+import 'package:myapp/page-1/notifications.dart';
+import 'package:myapp/page-1/menu.dart';
+import 'package:myapp/page-1/items.dart';
+
 class Folders extends StatefulWidget {
   const Folders({Key? key}) : super(key: key);
   @override
@@ -164,20 +171,33 @@ class _Folders extends State<Folders> {
                                           child: SizedBox(
                                             width: 94 * fem,
                                             height: 24 * fem,
-                                            child: Text(
-                                              'Chocolates\n',
-                                              style: SafeGoogleFont(
-                                                'Poppins',
-                                                fontSize: 16 * ffem,
-                                                fontWeight: FontWeight.w700,
-                                                height: 1.5 * ffem / fem,
-                                                color: Color(0xffffffff),
+                                            child: TextButton(
+                                              onPressed: () {
+                                                print("Chocolates pressed");
+                                                // Navigate to Items page when "Chocolates" is pressed
+                                                Navigator.push(
+                                                  context,
+                                                  MaterialPageRoute(
+                                                      builder: (context) =>
+                                                          Items()),
+                                                );
+                                              },
+                                              child: Text(
+                                                'Nutties',
+                                                style: SafeGoogleFont(
+                                                  'Poppins',
+                                                  fontSize: 16 * ffem,
+                                                  fontWeight: FontWeight.w700,
+                                                  height: 1.5 * ffem / fem,
+                                                  color: Color(0xffffffff),
+                                                ),
                                               ),
                                             ),
                                           ),
                                         ),
                                       ),
-                                      Positioned(
+
+                                      /*Positioned(
                                         // chocolatesfSc (7:406)
                                         left: 110 * fem,
                                         top: 20 * fem,
@@ -197,7 +217,7 @@ class _Folders extends State<Folders> {
                                             ),
                                           ),
                                         ),
-                                      ),
+                                      ),*/
                                       Positioned(
                                         // hbg12BA4 (7:420)
                                         left: 3.999939958 * fem,
@@ -776,6 +796,12 @@ class _Folders extends State<Folders> {
                       children: [
                         ElevatedButton(
                           onPressed: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => Dashboard(),
+                              ),
+                            );
                             // Add functionality for Home button
                           },
                           style: ElevatedButton.styleFrom(
@@ -798,6 +824,12 @@ class _Folders extends State<Folders> {
                         ),
                         ElevatedButton(
                           onPressed: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => Folders(),
+                              ),
+                            );
                             // Add functionality for Box button
                           },
                           style: ElevatedButton.styleFrom(
@@ -820,6 +852,12 @@ class _Folders extends State<Folders> {
                         ),
                         ElevatedButton(
                           onPressed: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => Members(),
+                              ),
+                            );
                             // Add functionality for Addsquare button
                           },
                           style: ElevatedButton.styleFrom(
@@ -842,6 +880,12 @@ class _Folders extends State<Folders> {
                         ),
                         ElevatedButton(
                           onPressed: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => Notific(),
+                              ),
+                            );
                             // Add functionality for Bell button
                           },
                           style: ElevatedButton.styleFrom(
@@ -864,6 +908,12 @@ class _Folders extends State<Folders> {
                         ),
                         ElevatedButton(
                           onPressed: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => Menu(),
+                              ),
+                            );
                             // Add functionality for Filter button
                           },
                           style: ElevatedButton.styleFrom(

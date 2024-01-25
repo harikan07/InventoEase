@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:myapp/utils.dart';
+import 'package:email_validator/email_validator.dart';
+import 'package:myapp/page-1/dashboard.dart';
 
 class SignIn extends StatefulWidget {
   const SignIn({Key? key}) : super(key: key);
@@ -8,6 +10,9 @@ class SignIn extends StatefulWidget {
 }
 
 class _SignInUp extends State<SignIn> {
+  final _formKey = GlobalKey<FormState>();
+  TextEditingController emailController = TextEditingController();
+  TextEditingController passwordController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     double baseWidth = 389.0025634766;
@@ -16,6 +21,7 @@ class _SignInUp extends State<SignIn> {
     return SingleChildScrollView(
       child: Material(
         child: Form(
+          key: _formKey,
           child: SizedBox(
             width: double.infinity,
             child: Container(
@@ -179,6 +185,7 @@ class _SignInUp extends State<SignIn> {
                     width: 318 * fem,
                     height: 42 * fem,
                     child: TextFormField(
+                      controller: emailController,
                       decoration: InputDecoration(
                         contentPadding: EdgeInsets.fromLTRB(
                             15 * fem, 10 * fem, 15 * fem, 10 * fem),
@@ -197,6 +204,14 @@ class _SignInUp extends State<SignIn> {
                           color: Color(0xffd2d2d2),
                         ),
                       ),
+                      validator: (email) {
+                        if (email == null || email.isEmpty) {
+                          return 'Email id required';
+                        } else if (!EmailValidator.validate(email)) {
+                          return 'Enter a valid email address';
+                        }
+                        return null;
+                      },
                     ),
                   ),
 
@@ -309,6 +324,7 @@ class _SignInUp extends State<SignIn> {
                             width: 318 * fem,
                             height: 42 * fem,
                             child: TextFormField(
+                              controller: passwordController,
                               obscureText: true,
                               decoration: InputDecoration(
                                 contentPadding: EdgeInsets.fromLTRB(
@@ -329,6 +345,26 @@ class _SignInUp extends State<SignIn> {
                                   color: Color(0xffd2d2d2),
                                 ),
                               ),
+                              validator: (password) {
+                                if (password == null || password.isEmpty) {
+                                  return 'Password required';
+                                }
+                                //password length should be greater than 6
+                                if (password.length < 6) {
+                                  return 'Password must be longer than 6 characters';
+                                }
+                                if (!password.contains(RegExp(r'[A-Z]'))) {
+                                  return 'Password should contain atleast one uppercase character';
+                                }
+                                if (!password.contains(RegExp(r'[0-9]'))) {
+                                  return 'Password should contain atleast one digit';
+                                }
+                                if (!password.contains(
+                                    RegExp(r'[!@#%^&*(),.?":{}|<>]'))) {
+                                  return 'Password should contain atleast one speical character\n';
+                                }
+                                return null;
+                              },
                             ),
                           ),
                         ),
@@ -376,7 +412,17 @@ class _SignInUp extends State<SignIn> {
                         11 * fem, 0 * fem, 20.34 * fem, 24 * fem),
                     child: ElevatedButton(
                       onPressed: () {
-                        print("get started pressed");
+                        //print("get started pressed");
+                        if (_formKey.currentState!.validate()) {
+                          print("success");
+
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => Dashboard(),
+                            ),
+                          );
+                        }
                       },
                       style: ElevatedButton.styleFrom(
                         padding: EdgeInsets.zero,

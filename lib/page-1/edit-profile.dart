@@ -3,6 +3,12 @@ import 'package:flutter/material.dart';
 // import 'dart:ui';
 // import 'package:google_fonts/google_fonts.dart';
 import 'package:myapp/utils.dart';
+import 'package:email_validator/email_validator.dart';
+import 'package:myapp/page-1/dashboard.dart';
+import 'package:myapp/page-1/folders.dart';
+import 'package:myapp/page-1/members.dart';
+import 'package:myapp/page-1/notifications.dart';
+import 'package:myapp/page-1/menu.dart';
 
 class EditProfile extends StatefulWidget {
   const EditProfile({Key? key}) : super(key: key);
@@ -11,6 +17,10 @@ class EditProfile extends StatefulWidget {
 }
 
 class _EditProfile extends State<EditProfile> {
+  final _formKey = GlobalKey<FormState>();
+  TextEditingController fullNameController = TextEditingController();
+  TextEditingController emailController = TextEditingController();
+  TextEditingController passwordController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     double baseWidth = 390;
@@ -19,6 +29,7 @@ class _EditProfile extends State<EditProfile> {
     return SingleChildScrollView(
       child: Material(
         child: Form(
+          key: _formKey,
           child: SizedBox(
             width: double.infinity,
             child: Container(
@@ -163,6 +174,7 @@ class _EditProfile extends State<EditProfile> {
                           width: double.infinity,
                           height: 42 * fem,
                           child: TextFormField(
+                            controller: fullNameController,
                             decoration: InputDecoration(
                               contentPadding: EdgeInsets.fromLTRB(
                                   15 * fem, 10 * fem, 15 * fem, 10 * fem),
@@ -182,6 +194,12 @@ class _EditProfile extends State<EditProfile> {
                                 color: Color(0xffd2d2d2),
                               ),
                             ),
+                            validator: (username) {
+                              if (username == null || username.isEmpty) {
+                                return 'User name required';
+                              }
+                              return null;
+                            },
                           ),
                         ),
 
@@ -224,6 +242,7 @@ class _EditProfile extends State<EditProfile> {
                           height: 42 * fem,
                           child: TextFormField(
                             keyboardType: TextInputType.emailAddress,
+                            controller: emailController,
                             decoration: InputDecoration(
                               contentPadding: EdgeInsets.fromLTRB(
                                   15 * fem, 10 * fem, 15 * fem, 10 * fem),
@@ -243,6 +262,14 @@ class _EditProfile extends State<EditProfile> {
                                 color: Color(0xffd2d2d2),
                               ),
                             ),
+                            validator: (email) {
+                              if (email == null || email.isEmpty) {
+                                return 'Email id required';
+                              } else if (!EmailValidator.validate(email)) {
+                                return 'Enter a valid email address';
+                              }
+                              return null;
+                            },
                           ),
                         ),
 
@@ -283,28 +310,48 @@ class _EditProfile extends State<EditProfile> {
                           width: double.infinity,
                           height: 42 * fem,
                           child: TextFormField(
-                            obscureText:
-                                true, // To hide the entered text as a password
-                            decoration: InputDecoration(
-                              contentPadding: EdgeInsets.fromLTRB(
-                                  15 * fem, 10 * fem, 15 * fem, 10 * fem),
-                              border: OutlineInputBorder(
-                                borderSide:
-                                    BorderSide(color: Color(0xffe2e1e5)),
-                                borderRadius: BorderRadius.circular(5 * fem),
+                              controller: passwordController,
+                              obscureText:
+                                  true, // To hide the entered text as a password
+                              decoration: InputDecoration(
+                                contentPadding: EdgeInsets.fromLTRB(
+                                    15 * fem, 10 * fem, 15 * fem, 10 * fem),
+                                border: OutlineInputBorder(
+                                  borderSide:
+                                      BorderSide(color: Color(0xffe2e1e5)),
+                                  borderRadius: BorderRadius.circular(5 * fem),
+                                ),
+                                filled: true,
+                                fillColor: Color(0xffffffff),
+                                hintText: 'Password',
+                                hintStyle: SafeGoogleFont(
+                                  'Poppins',
+                                  fontSize: 11 * ffem,
+                                  fontWeight: FontWeight.w400,
+                                  height: 2 * ffem / fem,
+                                  color: Color(0xffd2d2d2),
+                                ),
                               ),
-                              filled: true,
-                              fillColor: Color(0xffffffff),
-                              hintText: 'Password',
-                              hintStyle: SafeGoogleFont(
-                                'Poppins',
-                                fontSize: 11 * ffem,
-                                fontWeight: FontWeight.w400,
-                                height: 2 * ffem / fem,
-                                color: Color(0xffd2d2d2),
-                              ),
-                            ),
-                          ),
+                              validator: (password) {
+                                if (password == null || password.isEmpty) {
+                                  return 'Password required';
+                                }
+                                //password length should be greater than 6
+                                if (password.length < 6) {
+                                  return 'Password must be longer than 6 characters';
+                                }
+                                if (!password.contains(RegExp(r'[A-Z]'))) {
+                                  return 'Password should contain atleast one uppercase character';
+                                }
+                                if (!password.contains(RegExp(r'[0-9]'))) {
+                                  return 'Password should contain atleast one digit';
+                                }
+                                if (!password.contains(
+                                    RegExp(r'[!@#%^&*(),.?":{}|<>]'))) {
+                                  return 'Password should contain atleast one speical character\n';
+                                }
+                                return null;
+                              }),
                         ),
 
                         //  Update button
@@ -347,6 +394,9 @@ class _EditProfile extends State<EditProfile> {
                               122 * fem, 0 * fem, 124 * fem, 138 * fem),
                           child: ElevatedButton(
                             onPressed: () {
+                              if (_formKey.currentState!.validate()) {
+                                print("success");
+                              }
                               // Add functionality for Update button
                             },
                             style: ElevatedButton.styleFrom(
@@ -495,6 +545,12 @@ class _EditProfile extends State<EditProfile> {
                             children: [
                               ElevatedButton(
                                 onPressed: () {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) => Dashboard(),
+                                    ),
+                                  );
                                   // Add functionality for Home button
                                 },
                                 style: ElevatedButton.styleFrom(
@@ -518,6 +574,12 @@ class _EditProfile extends State<EditProfile> {
                               ),
                               ElevatedButton(
                                 onPressed: () {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) => Folders(),
+                                    ),
+                                  );
                                   // Add functionality for Box button
                                 },
                                 style: ElevatedButton.styleFrom(
@@ -541,6 +603,12 @@ class _EditProfile extends State<EditProfile> {
                               ),
                               ElevatedButton(
                                 onPressed: () {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) => Members(),
+                                    ),
+                                  );
                                   // Add functionality for Addsquare button
                                 },
                                 style: ElevatedButton.styleFrom(
@@ -564,6 +632,12 @@ class _EditProfile extends State<EditProfile> {
                               ),
                               ElevatedButton(
                                 onPressed: () {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) => Notific(),
+                                    ),
+                                  );
                                   // Add functionality for Bell button
                                 },
                                 style: ElevatedButton.styleFrom(
@@ -587,6 +661,12 @@ class _EditProfile extends State<EditProfile> {
                               ),
                               ElevatedButton(
                                 onPressed: () {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) => Menu(),
+                                    ),
+                                  );
                                   // Add functionality for Filter button
                                 },
                                 style: ElevatedButton.styleFrom(

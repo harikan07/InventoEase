@@ -1,6 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:myapp/utils.dart';
 
+import 'package:myapp/page-1/account-banlance.dart';
+import 'package:myapp/page-1/folders.dart';
+import 'package:myapp/page-1/members.dart';
+import 'package:myapp/page-1/notifications.dart';
+import 'package:myapp/page-1/menu.dart';
+
 class Dashboard extends StatefulWidget {
   const Dashboard({Key? key}) : super(key: key);
   @override
@@ -55,7 +61,7 @@ class _Dashboard extends State<Dashboard> {
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  Container(
+                                  /*Container(
                                     // availablebalanceQo6 (7:490)
                                     margin: EdgeInsets.fromLTRB(
                                         0 * fem, 0 * fem, 0 * fem, 11 * fem),
@@ -67,6 +73,31 @@ class _Dashboard extends State<Dashboard> {
                                         fontWeight: FontWeight.w400,
                                         height: 1.3333333333 * ffem / fem,
                                         color: Color(0xffffffff),
+                                      ),
+                                    ),
+                                  ),*/
+                                  Container(
+                                    // availablebalanceQo6 (7:490)
+                                    margin: EdgeInsets.fromLTRB(
+                                        0 * fem, 0 * fem, 0 * fem, 11 * fem),
+                                    child: TextButton(
+                                      onPressed: () {
+                                        // Navigate to AccBal when "Available balance" is pressed
+                                        Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                              builder: (context) => AccBal()),
+                                        );
+                                      },
+                                      child: Text(
+                                        'Available balance',
+                                        style: SafeGoogleFont(
+                                          'Poppins',
+                                          fontSize: 15 * ffem,
+                                          fontWeight: FontWeight.w400,
+                                          height: 1.3333333333 * ffem / fem,
+                                          color: Color(0xffffffff),
+                                        ),
                                       ),
                                     ),
                                   ),
@@ -265,6 +296,12 @@ class _Dashboard extends State<Dashboard> {
                           ElevatedButton(
                             onPressed: () {
                               print("home icon pressed");
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => Dashboard(),
+                                ),
+                              );
                               // Add functionality for home icon
                             },
                             style: ElevatedButton.styleFrom(
@@ -284,6 +321,12 @@ class _Dashboard extends State<Dashboard> {
                           ElevatedButton(
                             onPressed: () {
                               print("folders icon pressed");
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => Folders(),
+                                ),
+                              );
                               // Add functionality for box icon
                             },
                             style: ElevatedButton.styleFrom(
@@ -303,6 +346,12 @@ class _Dashboard extends State<Dashboard> {
                           ElevatedButton(
                             onPressed: () {
                               print("plus icon pressed");
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => Members(),
+                                ),
+                              );
                               // Add functionality for add square icon
                             },
                             style: ElevatedButton.styleFrom(
@@ -322,6 +371,12 @@ class _Dashboard extends State<Dashboard> {
                           ElevatedButton(
                             onPressed: () {
                               print("bell icon pressed");
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => Notific(),
+                                ),
+                              );
                               // Add functionality for bell icon
                             },
                             style: ElevatedButton.styleFrom(
@@ -343,6 +398,12 @@ class _Dashboard extends State<Dashboard> {
                           ElevatedButton(
                             onPressed: () {
                               print("filter icon pressed");
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => Menu(),
+                                ),
+                              );
                               // Add functionality for filter icon
                             },
                             style: ElevatedButton.styleFrom(

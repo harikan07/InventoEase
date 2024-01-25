@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:myapp/utils.dart';
-
 import 'package:email_validator/email_validator.dart';
+import 'package:myapp/page-1/dashboard.dart';
 
 class FormScreen extends StatefulWidget {
   const FormScreen({Key? key}) : super(key: key);
@@ -413,6 +413,12 @@ class _FormScreenState extends State<FormScreen> {
                           if (_formKey.currentState!.validate()) {
                             print("success");
                           }
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => Dashboard(),
+                            ),
+                          );
                         },
                         style: ElevatedButton.styleFrom(
                           padding: EdgeInsets.zero,
